@@ -5,7 +5,7 @@ import FindUs from '../FindUs';
 
 const RightNav = () => {
     return (
-        <div>
+        <div className='space-y-8'>
             <SocialLogin></SocialLogin>
             <FindUs></FindUs>
         </div>

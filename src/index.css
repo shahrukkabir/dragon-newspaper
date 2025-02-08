@@ -2,3 +2,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn.active {
+    background-color: #4a90e2; 
+    color: white;
+}
+
+.btn.changed {
+    background-color: violet;
+    color: white;
+}
