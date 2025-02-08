@@ -1,16 +1,24 @@
-import React from 'react';
+import { FaRegEye } from "react-icons/fa";
 import { FaBookmark, FaShareAlt } from 'react-icons/fa';
+import { AiFillStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
+const NewsCard = (props = {}) => {
+    const { news } = props || {};
 
-const NewsCard = ({ news }) => {
     return (
-        <div className=" rounded-2xl overflow-hidden bg-gray-800 my-5 shadow-lg p-8 mx-8">
-            <div className="flex justify-between items-center bg-gray-800 text-white p-3 rounded-md mb-4">
-                <div className="flex items-center gap-2">
-                    <img className="w-10 h-10 rounded-full" src={news.author.img} alt={news.author.name} />
+        <div className=" p-4 rounded-lg mx-6 space-y-5 my-5 shadow-md">
+            <div className="flex justify-between items-center">
+                {/* Author Information */}
+                <div className="flex items-center mb-4">
+                    <img
+                        src={news.author.img}
+                        alt={news.author.name}
+                        className="w-10 h-10 rounded-full mr-3"
+                    />
                     <div>
-                        <p className="font-semibold text-sm">{news.author.name}</p>
-                        <p className="text-gray-400 text-xs">{new Date(news.author.published_date).toDateString()}</p>
+                        <p className="font-semibold">{news.author.name}</p>
+                        <p className="text-sm text-gray-500">{news.author.published_date}</p>
                     </div>
                 </div>
                 <div className="flex gap-3 text-gray-400">
@@ -18,31 +26,50 @@ const NewsCard = ({ news }) => {
                     <FaShareAlt className="cursor-pointer hover:text-white" />
                 </div>
             </div>
-            <h2 className="font-bold text-lg mb-2">{news.title}</h2>
-            <div className='flex justify-center'>
-                <img className="w-full h-96 object-cover rounded-md mb-3" src={news.thumbnail_url} alt="news" />
-            </div>
-            <p className="text-gray-700 text-sm mb-3">
-                {news.details.length > 100 ? `${news.details.slice(0, 150)}...` : news.details}
+
+            {/* Title */}
+            <h2 className="text-xl font-semibold mb-2">{news.title}</h2>
+
+            {/* Thumbnail Image */}
+            <img
+                src={news.image_url}
+                alt="Thumbnail"
+                className="w-full  object-cover rounded-lg mb-4"
+            />
+
+            {/* Details */}
+            <p className="text-gray-700 text-sm mb-4">
+                {news.details.slice(0, 150)}...{" "}
+                <Link to={`/news/${news._id}`} className="text-primary">
+                    Read More
+                </Link>
             </p>
-            <a href="#" className="text-blue-500 text-sm font-semibold">Read More</a>
-            <div className="flex items-center justify-between mt-4">
-                <div className="flex items-center gap-1 text-yellow-400">
-                    {Array.from({ length: 5 }, (_, i) => (
-                        <span key={i}>{i < Math.round(news.rating.number) ? '★' : '☆'}</span>
+
+            {/* Ratings and Views */}
+            <div className="flex items-center justify-between text-gray-600 text-sm">
+                {/* Rating */}
+                <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                        <AiFillStar
+                            key={i}
+                            className={`text-yellow-500 ${i < Math.round(news.rating.number) ? "" : "opacity-50"
+                                }`}
+                        />
                     ))}
-                    <span className="text-gray-600 text-sm ml-1">{news.rating.number}</span>
+                    <span className="ml-2 font-semibold">{news.rating.number}</span>
                 </div>
-                <div className="flex items-center gap-1 text-gray-600 text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.5-7.5 10.5-7.5 10.5s-7.5-3-7.5-10.5a7.5 7.5 0 1115 0z" />
-                    </svg>
+
+                {/* Views */}
+                <div className="flex items-center">
+                    <FaRegEye className="mr-1" />
                     <span>{news.total_view}</span>
                 </div>
             </div>
         </div>
     );
 };
-
 export default NewsCard;
+
+// Sample news
+
+//
