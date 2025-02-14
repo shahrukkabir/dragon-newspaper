@@ -28,8 +28,6 @@ const HomeLayout = () => {
                     </aside>
                 </main>
             </header>
-            <nav></nav>
-            <main></main>
         </div>
     );
 };

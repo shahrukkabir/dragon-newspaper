@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const LatestNews = () => {
     return (
-        <div className='flex gap-5 justify-center items-center mt-4 px-5 bg-gray-800 py-4'>
+        <div className='flex gap-5 justify-center items-center mt-4 px-5 bg-gray-600 py-4'>
             <p className='bg-red-700 px-5 py-2 text-white font-bold'>Latest</p>
             <Marquee pauseOnHover gradient={false} speed={50}>
                 <Link to="/news" className='mx-4 text-white hover:underline'>
