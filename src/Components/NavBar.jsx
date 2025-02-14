@@ -4,12 +4,12 @@ import userIcon from "../assets/user.png"
 import { AuthContext } from './AuthProvider';
 
 const NavBar = () => {
-    const { name } = useContext(AuthContext);
-    console.log(name);
+    const { user } = useContext(AuthContext);
+    console.log(user);
     return (
         <div className='flex justify-between items-center'>
             <div className=''>
-                <h5>{name}</h5>
+            <h5>{user?.email || "Guest"}</h5>
             </div>
             <div className="nav space-x-5">
                 <Link to="/">Home</Link>
